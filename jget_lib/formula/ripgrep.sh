@@ -3,14 +3,14 @@ exists() {
 }
 
 get() {
-    case $ostype in
+    case $os in
         ubuntu)
             get_debian
             ;;
         debian)
             get_debian
             ;;
-        darwin)
+        macos)
             get_macos
             ;;
         *)

@@ -112,13 +112,13 @@ jget_install_one() {
         else
             case $? in
                 $ERR_SUPPORT)
-                    err_msg="Getting $target not supported on $arch $os."
+                    err_msg="Getting $target not supported on ${os}_${arch}"
                     ;;
                 $ERR_NETWORK)
                     err_msg="Connection error"
                     ;;
                 $ERR_DEPEND)
-                    err_msg="Dependencies for $target couldn't be installed. Check logs."
+                    err_msg="Dependencies for $target couldn't be installed. Check logs"
                     ;;
             esac
             MSG+=("[ ERROR ] Failed to install $target: $err_msg")

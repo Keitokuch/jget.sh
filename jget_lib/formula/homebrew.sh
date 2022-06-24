@@ -3,7 +3,7 @@ exists() {
 }
 
 get() {
-  [[ ! is_macos ]] && return $ERR_SUPPORT
+  [[ ~is_macos ]] && return $ERR_SUPPORT
   echo "Installing homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
