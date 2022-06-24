@@ -1,9 +1,9 @@
-VERSION=v18.0.0
+VERSION=v16.15.1
 
 
 get() {
     local version=${version:-$VERSION}
-    local distro=$ostype-x64
+    local distro=$ostype-$arch
     local nodejs=node-$version-$distro
     local lib_nodejs=$JGET/lib/nodejs
     mkdir -p $lib_nodejs
@@ -15,4 +15,9 @@ get() {
 
 exists() {
     has_command node
+}
+
+remove() {
+    rm -rf $LIB/nodejs
+    remove_path "lib/nodejs"
 }
