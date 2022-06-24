@@ -3,6 +3,7 @@ declare -ga MSG=()
 
 declare -i ERR_NETWORK=102
 declare -i ERR_SUPPORT=103
+declare -i ERR_DEPEND=104
 
 terminate() {
     MSG+=("Terminated. Cleaning up...")
@@ -84,6 +85,11 @@ parse_ostype() {
         return 1
     fi
     arch=$(uname -m)
+    [[ $arch == "x86_64"* ]] && arch=x64
+}
+
+require() {
+    jget_install -s $@ 
 }
 
 is_macos() {
@@ -98,8 +104,8 @@ is_arm() {
     [[ $(uname -m) == arm* ]]
 }
 
-is_x86() {
-    [[ $(uname -m) == x86* ]]
+is_x64() {
+    [[ $(uname -m) == x86_64* ]]
 }
 
 profile_add() {

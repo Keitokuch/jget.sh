@@ -59,6 +59,10 @@ jget() {
     clean_up
 }
 
+do_test() {
+    echo $arch
+}
+
 usage() {
     echo "Usage: $0 install [pkg_name] | remove [pkg_name] | update"
 }

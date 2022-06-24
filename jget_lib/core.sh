@@ -110,7 +110,19 @@ jget_install_one() {
         if get; then
             [[ $silent ]] || MSG+=(">>> installed $target <<<")
         else
-            MSG+=("[ ERROR ] Failed to install $target")
+            case $? in
+                $ERR_SUPPORT)
+                    err_msg="Getting $target not supported on $arch $os."
+                    ;;
+                $ERR_NETWORK)
+                    err_msg="Connection error"
+                    ;;
+                $ERR_DEPEND)
+                    err_msg="Dependencies for $target couldn't be installed. Check logs."
+                    ;;
+            esac
+            MSG+=("[ ERROR ] Failed to install $target: $err_msg")
+            err_msg=""
         fi
         cd $dir
     else
