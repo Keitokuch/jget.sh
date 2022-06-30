@@ -3,7 +3,7 @@ VERSION=3.2.1
 get() {
     local version=${version:-$VERSION}
     wget https://github.com/htop-dev/htop/releases/download/${version}/htop-${version}.tar.xz || return $ERR_NETWORK
-    tar -xzf htop-${version}.tar.xz
+    tar -xf htop-${version}.tar.xz
     cd htop-${version}
     ./configure --prefix=$prefix
     make -j$nr_worker && make install
@@ -17,7 +17,7 @@ exists() {
 remove() {
     local version=${version:-$VERSION}
     wget https://github.com/htop-dev/htop/releases/download/${version}/htop-${version}.tar.xz || return $ERR_NETWORK
-    tar -xzf htop-${version}.tar.xz
+    tar -xf htop-${version}.tar.xz
     cd htop-${version}
     ./configure --prefix=$prefix
     make uninstall
