@@ -141,9 +141,9 @@ jget_remove_one() {
     local optind=$OPTIND
     local func=_rm_$target
     unset -f remove exists
-    local formula="$FORMULA/$target.sh"
+    local formula_f="$FORMULA/$target.sh"
     [[ -f $formula_f ]] || { MSG+=("Formula for $target not found"); return 1; }
-    source $formula 2>/tmp/jerr || { MSG+=("Error in loading formula for $target: $(cat /tmp/jerr)"); return 1; }
+    source $formula_f 2>/tmp/jerr || { MSG+=("Error in loading formula for $target: $(cat /tmp/jerr)"); return 1; }
     [[ -n $(command -v exists) ]] || { MSG+=("[ ERROR ] Formula for $target is broken: exists() not found"); return 1; }
     [[ -n $(command -v remove) ]] || { MSG+=("[ ERROR ] Can not remove $target: remove() not found"); return 1; }
     if exists; then
