@@ -1,7 +1,7 @@
 AUTOMAKE_VERSION=1.16
 
 exists() {
-    has_executable automake
+    has_command automake
 }
 
 get() {
