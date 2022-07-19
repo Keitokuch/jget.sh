@@ -1,4 +1,4 @@
-NVIM_VERSION=nightly
+NVIM_VERSION=0.7.0
 
 get() {
     version=${version:-$NVIM_VERSION}
@@ -27,14 +27,14 @@ exists() {
 }
 
 get_linux() {
-    wget -O nvim.appimage https://github.com/neovim/neovim/releases/download/$version/nvim.appimage || return $ERR_NETWORK
+    wget -O nvim.appimage https://github.com/neovim/neovim/releases/download/v$version/nvim.appimage || return $ERR_NETWORK
     chmod +x nvim.appimage
     mv nvim.appimage $BIN/nvim.appimage
     ln -sf $BIN/nvim.appimage $BIN/nvim
 }
 
 get_macos() {
-    wget https://github.com/neovim/neovim/releases/download/$version/nvim-macos.tar.gz || return $ERR_NETWORK
+    wget https://github.com/neovim/neovim/releases/download/v$version/nvim-macos.tar.gz || return $ERR_NETWORK
     tar xzf nvim-macos.tar.gz
     mv $BIN/nvim-osx64 $BUILD/nvim-bak 2>/dev/null
     mv nvim-osx64 $BIN/
