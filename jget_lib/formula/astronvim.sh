@@ -5,5 +5,5 @@ exists() {
 get() {
   mv ~/.config/nvim ~/.config/nvim.bak
   git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-  nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  # nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
