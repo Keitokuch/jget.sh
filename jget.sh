@@ -11,7 +11,7 @@ mkdir -p $JGET
 
 SH_PROFILE=$HOME/.profile
 BASH_PROFILE=$([[ -f $HOME/.bash_profile ]] && echo "$HOME/.bash_profile" || echo "$HOME/.profile")
-ZSH_PROFILE=$HOME/.zshenv
+ZSH_PROFILE=$HOME/.zprofile
 SYS_RC=($BASH_PROFILE $ZSH_PROFILE $SH_PROFILE)
 
 JGET_PROFILE=$HOME/.jget_profile
