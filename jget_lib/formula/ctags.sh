@@ -4,6 +4,7 @@ exists() {
 }
 
 get() {
+    require autoconf automake
     local build=ctags
     mkdir -p $build 
     git clone https://github.com/universal-ctags/ctags.git $build   || return
