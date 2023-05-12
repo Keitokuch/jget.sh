@@ -1,4 +1,4 @@
-NVIM_VERSION=0.7.0
+NVIM_VERSION=0.8.0
 
 get() {
     version=${version:-$NVIM_VERSION}
@@ -35,8 +35,12 @@ get_linux() {
 
 get_macos() {
     wget https://github.com/neovim/neovim/releases/download/v$version/nvim-macos.tar.gz || return $ERR_NETWORK
+    xattr -c ./nvim-macos.tar.gz
     tar xzf nvim-macos.tar.gz
-    mv $BIN/nvim-osx64 $BUILD/nvim-bak 2>/dev/null
-    mv nvim-osx64 $BIN/
-    add_path "$BIN/nvim-osx64/bin"
+    nvim_folder=nvim-osx64
+    [[ -d nvim-macos ]] && nvim_folder=nvim-macos
+    [[ -d $BIN/nvim-osx64 ]] && mv $BIN/nvim-osx64 $BUILD/nvim-bak 2>/dev/null
+    [[ -d $BIN/nvim-macos ]] && mv $BIN/nvim-macos $BUILD/nvim-bak 2>/dev/null
+    mv $nvim_folder $BIN/
+    add_path "$BIN/$nvim_folder/bin"
 }
