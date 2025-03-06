@@ -1,7 +1,7 @@
 TMUX_VERSION=3.3a
 
 get() {
-    if ( is_macos && is_arm ); then 
+    if ( is_macos && is_arm64 ); then 
         get_apple_m 
     else
         get_general

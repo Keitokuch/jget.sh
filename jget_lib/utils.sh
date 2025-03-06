@@ -85,7 +85,7 @@ parse_ostype() {
         return 1
     fi
     arch=$(uname -m)
-    [[ $arch == "x86_64"* ]] && arch=x64
+    [[ $arch == "x86_64"* ]] && arch="x86_64"
 }
 
 require() {
@@ -100,8 +100,8 @@ is_linux() {
     [[ $ostype == "linux" ]]
 }
 
-is_arm() {
-    [[ $(uname -m) == arm* ]]
+is_arm64() {
+    [[ $(uname -m) == arm64 ]]
 }
 
 is_x64() {

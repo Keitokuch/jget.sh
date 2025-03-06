@@ -1,4 +1,4 @@
-NVIM_VERSION=0.8.0
+NVIM_VERSION=0.9.4
 
 get() {
     version=${version:-$NVIM_VERSION}
@@ -27,20 +27,22 @@ exists() {
 }
 
 get_linux() {
-    wget -O nvim.appimage https://github.com/neovim/neovim/releases/download/v$version/nvim.appimage || return $ERR_NETWORK
+    wget -O nvim.appimage https://github.com/neovim/neovim-releases/releases/download/v$version/nvim-linux-x86_64.appimage || return $ERR_NETWORK
     chmod +x nvim.appimage
     mv nvim.appimage $BIN/nvim.appimage
     ln -sf $BIN/nvim.appimage $BIN/nvim
 }
 
 get_macos() {
-    wget https://github.com/neovim/neovim/releases/download/v$version/nvim-macos.tar.gz || return $ERR_NETWORK
+    archive_name="nvim-macos"
+    [[ "$version" == 0.10.* ]] && archive_name="nvim-macos-$arch"
+    wget -O nvim-macos.tar.gz  https://github.com/neovim/neovim/releases/download/v${version}/${archive_name}.tar.gz || return $ERR_NETWORK
+
     xattr -c ./nvim-macos.tar.gz
     tar xzf nvim-macos.tar.gz
-    nvim_folder=nvim-osx64
-    [[ -d nvim-macos ]] && nvim_folder=nvim-macos
-    [[ -d $BIN/nvim-osx64 ]] && mv $BIN/nvim-osx64 $BUILD/nvim-bak 2>/dev/null
-    [[ -d $BIN/nvim-macos ]] && mv $BIN/nvim-macos $BUILD/nvim-bak 2>/dev/null
-    mv $nvim_folder $BIN/
-    add_path "$BIN/$nvim_folder/bin"
+    nvim_folder=$(ls -d nvim-* 2>/dev/null | head -n 1)
+    nvim_target="nvim-macos"
+    [[ -d $BIN/$nvim_target ]] && mv $BIN/$nvim_target $BUILD/nvim-bak 2>/dev/null
+    mv $nvim_folder $BIN/$nvim_target
+    add_path "$BIN/$nvim_target/bin"
 }
