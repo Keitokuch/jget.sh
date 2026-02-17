@@ -1,4 +1,4 @@
-NVIM_VERSION=0.9.4
+NVIM_VERSION=0.10.4
 
 get() {
     version=${version:-$NVIM_VERSION}
